@@ -1,0 +1,29 @@
+cabal-version:      2.4
+name:               aoc2021
+version:            0.1.0.0
+synopsis:           Advent od Code 2021 Solutions
+author:             Aleksa Prtenjača
+maintainer:         aleksa.prtenjaca03@gmail.com
+
+source-repository head
+    type:     git
+    location: https://github.com/Prki42/aoc2021
+
+library
+    hs-source-dirs:   common
+    default-language: Haskell2010
+
+    exposed-modules:
+        Advent
+
+    build-depends:
+        base ^>=4.14.3.0
+
+common day
+    build-depends:    aoc2021, base
+    hs-source-dirs:   days
+    default-language: Haskell2010
+
+executable Day01
+    import:  day
+    main-is: Day01.hs
