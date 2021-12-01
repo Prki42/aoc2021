@@ -8,7 +8,7 @@ import           Control.Arrow                  ( (&&&) )
 type Input = [Int]
 
 filterIncrease :: (Ord a, Num a) => [a] -> Int
-filterIncrease all@(_ : xs) = length $ filter (> 0) $ zipWith (-) xs all
+filterIncrease all@(_ : xs) = length $ filter (== True) $ zipWith (>) xs all
 filterIncrease []           = 0
 
 part1 :: Input -> Int
