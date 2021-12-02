@@ -2,7 +2,6 @@ module Main
     ( main
     ) where
 
-import           Advent                         ( splitOn )
 import           Control.Arrow                  ( (&&&) )
 import           Data.Char                      ( toUpper )
 
@@ -40,7 +39,7 @@ prepare x =
     [ Command (read (toUpper (head c) : tail c) :: Movement) (read n :: Int)
     | [c, n] <- splitted
     ]
-    where splitted = map (splitOn ' ') $ lines x
+    where splitted = map words $ lines x
 
 main :: IO ()
 main = readFile "inputs/input02.txt" >>= print . (part1 &&& part2) . prepare
