@@ -2,5 +2,5 @@
 
 Running:
 ```bash
-go run days/day01.go
+go run aoc.go 1
 ```
