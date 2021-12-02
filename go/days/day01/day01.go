@@ -1,4 +1,4 @@
-package main
+package day01
 
 import (
 	"aoc-2021/utils/files"
@@ -63,7 +63,7 @@ func part2(input []int) int {
 	return countIncrease(subSlicesSum(input))
 }
 
-func main() {
+func Day01() {
 	input := prepare(files.ReadFile(1))
 	fmt.Printf("(%v, %v)\n", part1(input), part2(input))
 }
