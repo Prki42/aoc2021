@@ -22,7 +22,7 @@ part2 :: Input -> Int
 part2 = filterIncrease . map sum . subLists
 
 prepare :: String -> Input
-prepare = map read . splitOn '\n'
+prepare = map read . lines
 
 main :: IO ()
 main = readFile "inputs/input01.txt" >>= print . (part1 &&& part2) . prepare

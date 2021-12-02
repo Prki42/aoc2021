@@ -40,7 +40,7 @@ prepare x =
     [ Command (read (toUpper (head c) : tail c) :: Movement) (read n :: Int)
     | [c, n] <- splitted
     ]
-    where splitted = map (splitOn ' ') $ splitOn '\n' x
+    where splitted = map (splitOn ' ') $ lines x
 
 main :: IO ()
 main = readFile "inputs/input02.txt" >>= print . (part1 &&& part2) . prepare
