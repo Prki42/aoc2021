@@ -2,7 +2,6 @@ module Main
     ( main
     ) where
 
-import           Advent                         ( splitOn )
 import           Control.Arrow                  ( (&&&) )
 
 type Input = [Int]
