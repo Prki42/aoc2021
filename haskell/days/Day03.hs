@@ -2,9 +2,17 @@ module Main
     ( main
     ) where
 
-import           Control.Arrow                  ( (&&&) )
+import           Control.Arrow                  ( (&&&)
+                                                , (***)
+                                                )
 import           Data.Char                      ( digitToInt )
-import           Data.List                      ( transpose )
+import           Data.List                      ( group
+                                                , maximumBy
+                                                , minimumBy
+                                                , sort
+                                                , transpose
+                                                )
+import           Data.Ord                       ( comparing )
 
 type Input = [String]
 
@@ -21,11 +29,22 @@ common xs = map (toBit . foldl (\c x -> c + digitToInt x) 0) . transpose $ xs
 invertBin :: String -> String
 invertBin xs = [ if x == '1' then '0' else '1' | x <- xs ]
 
+gasWrap _ [x] = [x]
+gasWrap f xs  = map (x :) (gasWrap f $ map tail $ filter ((== x) . head) xs)
+    where x = head . f (comparing length) . group . sort $ map head xs
+
+oxygen :: Input -> [String]
+oxygen = gasWrap maximumBy
+
+co2 :: Input -> [String]
+co2 = gasWrap minimumBy
+
 part1 :: Input -> Int
 part1 xs = fromBinary (invertBin c) * fromBinary c where c = common xs
 
 part2 :: Input -> Int
-part2 = const 2
+part2 = uncurry (*) . (parse *** parse) . (oxygen &&& co2)
+    where parse = fromBinary . head
 
 prepare :: String -> Input
 prepare = lines
