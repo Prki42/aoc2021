@@ -35,7 +35,7 @@ createSchool =
     mergeSchool . (++) emptySchool . map (head &&& length) . group . sort
 
 run :: Int -> School -> Int
-run n = foldl (\c (_, f) -> c + f) 0 . flip (!!) n . iterate dayUpdate
+run n = sum . map snd . (!! n) . iterate dayUpdate
 
 part1 :: Input -> Int
 part1 = run 80 . createSchool
