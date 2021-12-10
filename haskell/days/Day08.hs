@@ -17,8 +17,6 @@ import           Data.Maybe                     ( mapMaybe )
 type Row = ([String], [String])
 type Input = [Row]
 
--- freqMap = Map.fromList [(6, 'b'), (4, 'e'), (9, 'f')]
-
 decode :: Row -> Int
 decode (allDigits, wanted) = foldl (\c x -> c * 10 + x) 0
     $ mapMaybe (flip elemIndex allDigitsSorted . sort) wanted
