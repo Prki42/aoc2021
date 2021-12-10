@@ -52,3 +52,8 @@ executable Day08
     import:  day
     build-depends: containers
     main-is: Day08.hs
+
+executable Day09
+    import:  day
+    build-depends: containers
+    main-is: Day09.hs
