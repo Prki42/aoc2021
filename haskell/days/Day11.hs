@@ -1,4 +1,3 @@
-{-# LANGUAGE TupleSections #-}
 module Main
     ( main
     ) where
@@ -9,7 +8,7 @@ import           Data.Map                       ( Map )
 import qualified Data.Map                      as Map
 
 type SquidGrid = Map (Int, Int) Int
-type Input = Map (Int, Int) Int
+type Input = SquidGrid
 
 getNeighbours :: (Int, Int) -> [(Int, Int)]
 getNeighbours (x, y) = filter
