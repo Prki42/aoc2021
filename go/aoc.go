@@ -5,6 +5,7 @@ import (
 	"aoc-2021/days/day02"
 	"aoc-2021/days/day04"
 	"aoc-2021/days/day05"
+	"aoc-2021/days/day12"
 	"os"
 	"strconv"
 )
@@ -28,5 +29,7 @@ func main() {
 		day04.Day04()
 	case 5:
 		day05.Day05()
+	case 12:
+		day12.Day12()
 	}
 }
