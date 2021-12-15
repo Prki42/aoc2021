@@ -72,3 +72,8 @@ executable Day13
     import:  day
     build-depends: containers
     main-is: Day13.hs
+
+executable Day14
+    import:  day
+    build-depends: containers
+    main-is: Day14.hs
