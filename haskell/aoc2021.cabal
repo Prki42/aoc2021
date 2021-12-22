@@ -82,3 +82,8 @@ executable Day15
     import:  day
     build-depends: containers, search-algorithms
     main-is: Day15.hs
+
+executable Day17
+    import:  day
+    build-depends: containers
+    main-is: Day17.hs
