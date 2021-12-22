@@ -5,13 +5,10 @@ module Main
 
 import           Advent                         ( splitOn )
 import           Control.Arrow                  ( (&&&) )
-import           Data.List                      ( groupBy )
 import           Data.Map                       ( Map )
 import qualified Data.Map                      as Map
-import           Data.Ord                       ( comparing )
 import           Data.Set                       ( Set )
 import qualified Data.Set                      as Set
-
 
 data Area = Area
     { xc1 :: Int
