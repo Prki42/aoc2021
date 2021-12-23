@@ -22,8 +22,8 @@ toBin x = showIntAtBase 2 intToDigit x ""
 toDec :: Integral a => String -> a
 toDec = fst . head . readInt 2 (`elem` "01") digitToInt
 
-addZeroes :: String -> String
-addZeroes xs | len `mod` 4 == 0 = xs
+padZeroes :: String -> String
+padZeroes xs | len `mod` 4 == 0 = xs
              | otherwise        = replicate (4 - (len `mod` 4)) '0' ++ xs
     where len = length xs
 
@@ -60,15 +60,40 @@ versionSum :: Packet -> Int
 versionSum (Literal v _    ) = v
 versionSum (Operator v _ ls) = v + sum (map versionSum ls)
 
+evaluatePacket :: Packet -> Int
+evaluatePacket (Literal _ num) = num
+evaluatePacket (Operator _ packetId ls') =
+    let ls = map evaluatePacket ls'
+    in  case packetId of
+            0 -> sum ls
+            1 -> product ls
+            2 -> minimum ls
+            3 -> maximum ls
+            5 -> if head ls > (ls !! 1) then 1 else 0
+            6 -> if head ls < (ls !! 1) then 1 else 0
+            7 -> if head ls == (ls !! 1) then 1 else 0
+            _ -> 0
+
 part1 :: Input -> Int
 part1 = versionSum
 
 part2 :: Input -> Int
-part2 = const 2
+part2 = evaluatePacket
 
 prepare :: String -> Input
-prepare =
-    fst . last . readP_to_S packet . addZeroes . toBin . fst . head . readHex
+prepare xs =
+    fst
+        . last
+        . readP_to_S packet
+        . padZeroes
+        . (zeroes ++)
+        . toBin
+        . fst
+        . head
+        . readHex
+        $ xs
+    where zeroes = replicate (4 * length (takeWhile (== '0') xs)) '0'
+
 
 main :: IO ()
 main = readFile "inputs/input16.txt" >>= print . (part1 &&& part2) . prepare
